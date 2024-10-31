@@ -38,7 +38,7 @@ Since port 443 is the default for https it can be omitted: https://magic-ug.org
     The path begins with a forward slash ( / ).  
     Originally, the path represented the physical location of a resource on the web server.  A request to the path "/images/customers/12345.png" meant that there was a folder on the web server called "images", and inside there was a folder called "customers", and inside there was an image called "12345.png" that you wanted to work with. 
 
-    Nowadays, however, the path is usually an abstraction and there usually isn't a folder structure on the server that matches the path.  For example, if we want to view the picture of employee #150, we might have a path of "/employee/150/image.png". There isn't an actual folder for each employee on the server; the front-controller would know how to return the image of a specific employee.  
+    Nowadays, however, the path is usually an abstraction and there usually isn't a folder structure on the server that matches the path.  For example, if we want to view the picture of employee #150, we might have a path of "/employee/150/image". There isn't an actual folder for each employee on the server; the front-controller would know how to return the image of a specific employee.  
       
 Example:  
 https://www.magic-ug.org:443/annual-virginia-beach-ibm-i-conference/ uses HTTPS protocol to communicate with the magic-ug.org server on port 443 and retrieves the resource for the annual conference.  
@@ -131,3 +131,7 @@ You should see something like this:
 
 You should see something like this:  
 ![query string](images/query_string.PNG)   
+
+
+## 🚀 Congratulations!
+If you see a webpage like that, you are ready to start building an app!  
