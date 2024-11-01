@@ -91,20 +91,20 @@ Sometimes you will also want to see the parameters so let's include the `QUERY_S
 ```
 <?php
 
-$m = $_SERVER["REQUEST_METHOD"];
-$p = $_SERVER["REQUEST_URI"];
-$q = $_SERVER["QUERY_STRING"];
+$method = $_SERVER["REQUEST_METHOD"];
+$path = $_SERVER["REQUEST_URI"];
+$query = $_SERVER["QUERY_STRING"];
 
-print('Method = ' . $m . '<br>');
-print('Path = '   . $p . '<br>');
-print('Query = '  . $q . '<br>');
+print('Method = ' . $method . '<br>');
+print('Path = '   . $path . '<br>');
+print('Query = '  . $query . '<br>');
 ```
 
 Lines 3 - 5:  
-We are declaring variables named `$m`, `$p`, and `$q`.  
+We are declaring variables named `$method`, `$path`, and `$query`.  
 Variables in PHP always start with `$` and you do not specify a data type.  
 To access a specific element (or key) in the array, you use the name of the array followed by the name of the key inside square brackets.  
-On line 7 we assign the value of the `["REQUEST_METHOD"]` element to the `$m` variable.  
+On line 3 we assign the value of the `["REQUEST_METHOD"]` element to the `$method` variable.  
 
 
 
