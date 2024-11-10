@@ -1,4 +1,4 @@
-# Customers
+# Employees
 
 Now it's time to fetch some data and return results!
 
@@ -39,7 +39,7 @@ Yay! We are fetching data from the database and returning it to the browser...th
 We now want to make a few changes: let's convert this code into a function, move this code into a separate file, and let's return JSON instead of a PHP array.
 
 
-<br>➡️ In your /magic2024 directory, create a file named `customer.php`  
+<br>➡️ In your /magic2024 directory, create a file named `employee.php`  
 ❗ make sure this file is in magic2024 and *not* in htdocs.  
 
 
@@ -47,13 +47,13 @@ Your file structure should look like this:
 ![file structure](images/files.PNG)  
 
 
-<br>➡️ Paste this code into `customer.php` so that it looks like this: 
+<br>➡️ Paste this code into `employee.php` so that it looks like this: 
 ```
 <?php
 
 include '../db.php';
 
-function get_all_customers() {
+function get_all_employees() {
     $dbConn = get_db_conn();
 
     try {
@@ -68,7 +68,7 @@ function get_all_customers() {
     } 
 }
 ```
-We now have a function we can call to fetch all the customers.
+We now have a function we can call to fetch all the employees.
 We want to change our `index.php` to call this new function.  
 
 
@@ -77,14 +77,14 @@ We want to change our `index.php` to call this new function.
 ```
 <?php
 
-include '../customer.php';
+include '../employee.php';
 
-$customers = get_all_customers();
-print(json_encode($customers));
+$employees = get_all_employees();
+print(json_encode($employees));
 ```
 
-First we include the customer file,  
-Then we call our new function and get an array of all the customers,  
+First we include the employee file,  
+Then we call our new function and get an array of all the employees,  
 Then we use the `json_encode` function to convert the PHP array into JSON, and print the results.  
 
 
@@ -93,9 +93,9 @@ Then we use the `json_encode` function to convert the PHP array into JSON, and p
 You should see something like this:  
 ![server array](images/json.PNG)  
 
-This is the same customer data, now formatted as JSON.
+This is the same employee data, now formatted as JSON.
 
 
 ## 🚀 Congratulations!
-We are now able to return the customer data as JSON!
+We are now able to return the employee data as JSON!
 Now let's do the same thing for the departments.
