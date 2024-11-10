@@ -51,8 +51,6 @@ Your file structure should look like this:
 ```
 <?php
 
-include '../db.php';
-
 function get_all_employees() {
     $dbConn = get_db_conn();
 
@@ -77,6 +75,7 @@ We want to change our `index.php` to call this new function.
 ```
 <?php
 
+include '../db.php';
 include '../employee.php';
 
 $employees = get_all_employees();
