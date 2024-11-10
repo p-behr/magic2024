@@ -95,6 +95,54 @@ You should see something like this:
 This is the same employee data, now formatted as JSON.
 
 
+## Return object
+If we look at the OpenAPI specification, it tells us that the the return value for /employees should be a JSON object that looks like this:  
+```
+{
+  "length": 0,
+  "employees": [
+    {
+      "id": "string",
+      "first": "string",
+      "last": "string",
+      "job": "string",
+      "workdept": "str",
+      "salary": 1
+    }
+  ]
+}
+```
+
+We have the employees array, and just need to add the length.  
+
+
+<br>➡️ Update `index.php` so that it looks like this:
+```
+<?php
+
+include '../db.php';
+include '../employee.php';
+
+$employees = get_all_employees();
+$returnObj = array(
+    "length" => count($employees),
+    "employees" => $employees
+);
+print(json_encode($returnObj));
+```
+
+We call get_all_employees, same as before.  
+Then we create a PHP array named `$returnObj` that has the length.  The length of the array is calculated by using the `count()` function.  Then, in the same array, we include the employees.  
+Then we encode the $returnObj as JSON and return that back to the client.   
+
+
+<br>➡️ Open your browser and go to `http://magic.magic-ug.org:{your_port}`  
+
+You should see something like this:  
+![server array](images/return.PNG)  
+
+
+
 ## 🚀 Congratulations!
-We are now able to return the employee data as JSON!
+We are now able to return the employee data and length as JSON!
 Now let's do the same thing for the departments.
