@@ -75,12 +75,20 @@ $path = $_SERVER["REQUEST_URI"];
 
 if ($method == 'GET' && $path == '/employees') {
     $employees = get_all_employees();
-    print(json_encode($employees));
+    $returnObj = array(
+        "length" => count($employees),
+        "employees" => $employees
+    );
+    print(json_encode($returnObj));
 }
 
 elseif ($method == 'GET' && $path == '/departments') {
     $departments = get_all_departments();
-    print(json_encode($departments));
+    $returnObj = array(
+        "length" => count($departments),
+        "departments" => $departments
+    );
+    print(json_encode($returnObj));
 }
 
 else {
