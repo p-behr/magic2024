@@ -14,7 +14,7 @@ try {
     $sql = "select * from SAMPLE.EMPLOYEE";
     $query = $dbConn->prepare($sql);
     $query->execute(); 
-    $rows = $query->fetchAll();
+    $rows = $query->fetchAll(PDO::FETCH_ASSOC);
     print_r($rows); 
 } catch (PDOException $exception) {
     echo $exception->getMessage();
@@ -25,7 +25,7 @@ After we get our database connection we are going to build an SQL statement and 
 We build the SQL statement `$sql = "select * from SAMPLE.EMPLOYEE";`   
 Prepare the SQL statement `$query = $dbConn->prepare($sql);`   
 Execute the SQL statement `$query->execute();`   
-And then fetch the results `$rows = $query->fetchAll();`    
+And then fetch the results as an associative array (using field names) `$rows = $query->fetchAll(PDO::FETCH_ASSOC);`   
 The results in the variable `$rows` will be a PHP array.  
 
 <br>➡️ Open your browser and go to `http://magic.magic-ug.org:{your_port}`  
@@ -58,7 +58,7 @@ function get_all_employees() {
         $sql = "select * from SAMPLE.EMPLOYEE";
         $query = $dbConn->prepare($sql);
         $query->execute(); 
-        $rows = $query->fetchAll();
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
         return $rows; 
     } catch (PDOException $exception) {
         echo $exception->getMessage();
@@ -95,8 +95,9 @@ You should see something like this:
 This is the same employee data, now formatted as JSON.
 
 
-## Return object
-If we look at the OpenAPI specification, it tells us that the the return value for /employees should be a JSON object that looks like this:  
+## Matching the spec
+
+If we look at the OpenAPI specification, it tells us that the the return value for the /employees route should be a JSON object that looks like this:  
 ```
 {
   "length": 0,
@@ -113,7 +114,43 @@ If we look at the OpenAPI specification, it tells us that the the return value f
 }
 ```
 
-We have the employees array, and just need to add the length.  
+First thing we want to do is match the names for the employee object; we currently have the system field names (i.e. "EMPNO").
+
+
+<br>➡️ Update `employee.php` so that it looks like this:
+```
+<?php
+
+function get_all_employees() {
+    $dbConn = get_db_conn();
+
+    try {
+        $sql = <<<SQL
+            select 
+                empno as "id",
+                firstnme as "first",
+                lastname as "last",
+                job as "job",
+                workdept as "workdept",
+                salary as "salary"
+            from SAMPLE.EMPLOYEE
+        SQL;
+        $query = $dbConn->prepare($sql);
+        $query->execute(); 
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $rows; 
+    } catch (PDOException $exception) {
+        echo $exception->getMessage();
+        return NULL;
+    } 
+}
+```
+The only thing we have changed is the value of the `$sql` variable and how we set it (using what's called a heredoc).  
+This will give us the field names that we want (i.e. "id").  Keep in mind that JSON is case-sensitive, so "ID" is not the same as "id".  
+
+
+## Return object
+We have the employees array and the proper field names so we just need to add the length.  
 
 
 <br>➡️ Update `index.php` so that it looks like this:
