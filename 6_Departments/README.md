@@ -18,10 +18,17 @@ function get_all_departments() {
     $dbConn = get_db_conn();
 
     try {
-        $sql = "select * from SAMPLE.DEPARTMENT";
+        $sql = <<<SQL
+            select 
+                DEPTNO as "id",
+                DEPTNAME as "name",
+                LOCATION as "location",
+                MGRNO as "manager"
+            from SAMPLE.DEPARTMENT
+        SQL;
         $query = $dbConn->prepare($sql);
         $query->execute(); 
-        $rows = $query->fetchAll();
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
         return $rows; 
     } catch (PDOException $exception) {
         echo $exception->getMessage();
