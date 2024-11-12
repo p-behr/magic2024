@@ -282,4 +282,4 @@ You should see something like this:
 ## 🚀 Congratulations!
 We have implemented 4 of the 8 routes!!  
 As you can see, the `index.php` is starting to get a little bit hard to understand already...and we're only 1/2 way through!!  We also need the ability to send back HTTP status codes, and read the HTTP Request body for updates and inserts.  
-In the next section we will use the Slim framework to make this easier to do, and easier to understand.  
+In the next section we will begin to use the Slim framework to make `index.php` cleaner and easier to understand.  
