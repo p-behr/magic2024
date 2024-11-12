@@ -273,7 +273,7 @@ You should see something like this:
 
 
 When a request for a specific department comes in, we will call our new function to fetch that department and then display the customer.  
-➡️ Open your browser and go to `http://magic.magic-ug.org:{your_port}/departments/000020`  
+➡️ Open your browser and go to `http://magic.magic-ug.org:{your_port}/employees/000020`  
 
 You should see something like this:  
 ![server array](images/employees_2.PNG)  
