@@ -273,11 +273,9 @@ You should see something like this:
 
 
 When a request for a specific department comes in, we will call our new function to fetch that department and then display the customer.  
-➡️ Open your browser and go to `http://magic.magic-ug.org:{your_port}/employees/000020`  
+➡️ Open your browser and go to `http://magic.magic-ug.org:{your_port}/departments/A00`  
 
-You should see something like this:  
-![server array](images/employees_2.PNG)  
-
+You should see just department A00
 
 ## 🚀 Congratulations!
 We have implemented 4 of the 8 routes!!  
